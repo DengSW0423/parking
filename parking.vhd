@@ -6,7 +6,8 @@ entity parking is
 	port(
 		clk_100hz: in std_logic;
 		disp7, disp6: out std_logic_vector(6 downto 0);
-		full: out std_logic
+		full: out std_logic;
+		parking_spaces: in std_logic_vector(7 downto 0)
 	);
 end parking;
 

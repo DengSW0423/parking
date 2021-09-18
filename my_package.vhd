@@ -3,7 +3,11 @@ use ieee.std_logic_1164.all;
 
 package my_package is
 
-	-- constant
+-- 1.type
+	type number_matrix is array (0 to 7) of std_logic_vector(7 downto 0);
+
+-- 2.constant
+	--segment led
 	constant ZERO: std_logic_vector(6 downto 0) := "1111110";
 	constant ONE: std_logic_vector(6 downto 0) := "0110000";
 	constant TWO: std_logic_vector(6 downto 0) := "1101101";
@@ -15,7 +19,107 @@ package my_package is
 	constant EIGHT: std_logic_vector(6 downto 0) := "1111111";
 	constant NINE: std_logic_vector(6 downto 0) := "1111011";
 	
-	-- components
+	--8*8 matrix
+	constant _ZERO: number_matrix := (
+		"00011000",
+		"00111100",
+		"00100100",
+		"00100100",
+		"00100100",
+		"00100100",
+		"00111100",
+		"00011000"
+	);
+	
+	constant _ONE: number_matrix := (
+		"00011000",
+		"00111000",
+		"00011000",
+		"00011000",
+		"00011000",
+		"00011000",
+		"00011000",
+		"00011000"
+	);
+	
+	constant _TWO: number_matrix := (
+		"00011100",
+		"00111110",
+		"00100110",
+		"00000110",
+		"00001100",
+		"00011100",
+		"00111000",
+		"00111110"
+	);
+	
+	constant _THREE: number_matrix := (
+		"00011100",
+		"00110110",
+		"00000110",
+		"00111100",
+		"00111110",
+		"00000110",
+		"00001110",
+		"00111100"
+	);
+	
+	constant _FOUR: number_matrix := (
+		"00000100",
+		"00001100",
+		"00011100",
+		"00100100",
+		"01100100",
+		"01111111",
+		"00000100",
+		"00000100"
+	);
+	
+	constant _FIVE: number_matrix := (
+		"00110000",
+		"00111110",
+		"00110000",
+		"00111100",
+		"00000110",
+		"00000110",
+		"00100110",
+		"00011100"
+	);	
+
+	constant _SIX: number_matrix := (
+		"00011100",
+		"00110010",
+		"00100000",
+		"00111100",
+		"00110110",
+		"00100010",
+		"00100110",
+		"00011100"
+	);
+	
+	constant _SEVEN: number_matrix := (
+		"00111100",
+		"01111110",
+		"00000110",
+		"00001100",
+		"00011000",
+		"00011000",
+		"00011000",
+		"00011000"
+	);
+	
+	constant _EIGHT: number_matrix := (
+		"00111100",
+		"01100110",
+		"01100110",
+		"01111110",
+		"00111100",
+		"01100110",
+		"01100110",
+		"00111100"
+	);
+	
+-- 3.components
 	component cyclic_counter is
 		port(
 			clk_1hz: in std_logic;
@@ -35,6 +139,35 @@ package my_package is
 		port(
 			clk_origin: in std_logic;
 			clk_out: out std_logic
+		);
+	end component;
+	
+	component parking_space_counter is
+		port(
+			parking_spaces: in std_logic_vector(7 downto 0);
+			checked_out: in boolean;
+			blinking: out boolean;
+			spaces: out integer range 0 to 8
+		);
+	end component;
+	
+	component matrix_driver is
+		port(
+			rst: in std_logic;
+			clk_2hz:in std_logic;
+			clk_100hz: in std_logic;
+			blinking: in boolean;
+			spaces: in integer range 0 to 8;
+			row: out std_logic_vector(7 downto 0);
+			col: out std_logic_vector(7 downto 0);
+		);
+	end component;
+	
+	component time_counter is
+		port(
+			clk_1hz: in std_logic;
+			led: in std_logic_vector(7 downto 0);
+			tim: out integer range 0 to 100
 		);
 	end component;
 	

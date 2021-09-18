@@ -49,6 +49,8 @@ set_global_assignment -name POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR 3.3V
 set_global_assignment -name MISC_FILE "C:/Users/dsw/Documents/2021fall/parking/parking.dpf"
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+set_global_assignment -name VHDL_FILE time_counter.vhd
+set_global_assignment -name VHDL_FILE matrix_driver.vhd
 set_global_assignment -name SOURCE_FILE parking.qsf
 set_global_assignment -name VHDL_FILE divider_2.vhd
 set_global_assignment -name VHDL_FILE divider_50.vhd
@@ -56,3 +58,4 @@ set_global_assignment -name VHDL_FILE parking.vhd
 set_global_assignment -name VHDL_FILE my_package.vhd
 set_global_assignment -name VHDL_FILE cyclic_counter.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE parking.vwf
+set_global_assignment -name VHDL_FILE parking_space_counter.vhd
