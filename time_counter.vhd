@@ -26,7 +26,7 @@ begin
 	
 	process(led)
 	begin
-		for i in range 0 to 7 loop
+		for i in 0 to 7 loop
 			if rising_edge(led(i)) then
 				tim <= times(i);
 				exit;

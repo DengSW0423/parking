@@ -7,7 +7,7 @@ entity parking_space_counter is
 		parking_spaces: in std_logic_vector(7 downto 0);
 		checked_out: in boolean;
 		blinking: out boolean;
-		spaces: out integer range 0 to 8
+		spaces: buffer integer range 0 to 8
 	);
 end parking_space_counter;
 
@@ -19,7 +19,7 @@ begin
 	begin
 		for i in 0 to 7 loop
 			if parking_spaces(i) = '0' then
-				cur_sapces := cur_spaces + 1;
+				cur_spaces := cur_spaces + 1;
 			end if;
 		end loop;
 		

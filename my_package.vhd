@@ -20,7 +20,7 @@ package my_package is
 	constant NINE: std_logic_vector(6 downto 0) := "1111011";
 	
 	--8*8 matrix
-	constant _ZERO: number_matrix := (
+	constant ZERO_m: number_matrix := (
 		"00011000",
 		"00111100",
 		"00100100",
@@ -31,7 +31,7 @@ package my_package is
 		"00011000"
 	);
 	
-	constant _ONE: number_matrix := (
+	constant ONE_m: number_matrix := (
 		"00011000",
 		"00111000",
 		"00011000",
@@ -42,7 +42,7 @@ package my_package is
 		"00011000"
 	);
 	
-	constant _TWO: number_matrix := (
+	constant TWO_m: number_matrix := (
 		"00011100",
 		"00111110",
 		"00100110",
@@ -53,7 +53,7 @@ package my_package is
 		"00111110"
 	);
 	
-	constant _THREE: number_matrix := (
+	constant THREE_m: number_matrix := (
 		"00011100",
 		"00110110",
 		"00000110",
@@ -64,7 +64,7 @@ package my_package is
 		"00111100"
 	);
 	
-	constant _FOUR: number_matrix := (
+	constant FOUR_m: number_matrix := (
 		"00000100",
 		"00001100",
 		"00011100",
@@ -75,7 +75,7 @@ package my_package is
 		"00000100"
 	);
 	
-	constant _FIVE: number_matrix := (
+	constant FIVE_m: number_matrix := (
 		"00110000",
 		"00111110",
 		"00110000",
@@ -86,7 +86,7 @@ package my_package is
 		"00011100"
 	);	
 
-	constant _SIX: number_matrix := (
+	constant SIX_m: number_matrix := (
 		"00011100",
 		"00110010",
 		"00100000",
@@ -97,7 +97,7 @@ package my_package is
 		"00011100"
 	);
 	
-	constant _SEVEN: number_matrix := (
+	constant SEVEN_m: number_matrix := (
 		"00111100",
 		"01111110",
 		"00000110",
@@ -108,7 +108,7 @@ package my_package is
 		"00011000"
 	);
 	
-	constant _EIGHT: number_matrix := (
+	constant EIGHT_m: number_matrix := (
 		"00111100",
 		"01100110",
 		"01100110",
@@ -122,8 +122,9 @@ package my_package is
 -- 3.components
 	component cyclic_counter is
 		port(
-			clk_1hz: in std_logic;
-			disp7, disp6: out std_logic_vector(6 downto 0);
+			clk_100hz: in std_logic;
+			disp: out std_logic_vector(6 downto 0);
+			disp_switch: buffer std_logic_vector(1 downto 0);
 			full: out std_logic --full circle output 1
 		);
 	end component;
@@ -158,8 +159,8 @@ package my_package is
 			clk_100hz: in std_logic;
 			blinking: in boolean;
 			spaces: in integer range 0 to 8;
-			row: out std_logic_vector(7 downto 0);
-			col: out std_logic_vector(7 downto 0);
+			row: buffer bit_vector(7 downto 0);
+			col: out std_logic_vector(7 downto 0)
 		);
 	end component;
 	

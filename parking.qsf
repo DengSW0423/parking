@@ -59,3 +59,24 @@ set_global_assignment -name VHDL_FILE my_package.vhd
 set_global_assignment -name VHDL_FILE cyclic_counter.vhd
 set_global_assignment -name VECTOR_WAVEFORM_FILE parking.vwf
 set_global_assignment -name VHDL_FILE parking_space_counter.vhd
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_18 -to clk_100hz
+set_location_assignment PIN_62 -to disp[6]
+set_location_assignment PIN_59 -to disp[5]
+set_location_assignment PIN_58 -to disp[4]
+set_location_assignment PIN_57 -to disp[3]
+set_location_assignment PIN_55 -to disp[2]
+set_location_assignment PIN_53 -to disp[1]
+set_location_assignment PIN_52 -to disp[0]
+set_location_assignment PIN_31 -to disp_switch[1]
+set_location_assignment PIN_30 -to disp_switch[0]
+set_location_assignment PIN_80 -to full
+set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_location_assignment PIN_70 -to unused_disp[5]
+set_location_assignment PIN_69 -to unused_disp[4]
+set_location_assignment PIN_68 -to unused_disp[3]
+set_location_assignment PIN_67 -to unused_disp[2]
+set_location_assignment PIN_66 -to unused_disp[1]
+set_location_assignment PIN_63 -to unused_disp[0]

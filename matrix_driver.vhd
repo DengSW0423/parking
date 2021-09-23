@@ -9,8 +9,8 @@ entity matrix_driver is
 		clk_100hz: in std_logic;
 		blinking: in boolean;
 		spaces: in integer range 0 to 8;
-		row: out std_logic_vector(7 downto 0);
-		col: out std_logic_vector(7 downto 0);
+		row: buffer bit_vector(7 downto 0);
+		col: out std_logic_vector(7 downto 0)
 	);
 end matrix_driver;
 
@@ -27,17 +27,17 @@ begin
 		elsif rising_edge(clk_100hz) then
 			if blinking then  -- need blinking in 2hz.
 				if clk_2hz = '1' then -- show number matrix when clk_2hz is high.
-					row ror 1;
-					case sapces is
-						when 0 => matrix := _ZERO;
-						when 1 => matrix := _ONE;
-						when 2 => matrix := _TWO;
-						when 3 => matrix := _THREE;
-						when 4 => matrix := _FOUR;
-						when 5 => matrix := _FIVE;
-						when 6 => matrix := _SIX;
-						when 7 => matrix := _SEVEN;
-						when 8 => matrix := _EIGHT;
+					row <= row ror 1;
+					case spaces is
+						when 0 => matrix := ZERO_m;
+						when 1 => matrix := ONE_m;
+						when 2 => matrix := TWO_m;
+						when 3 => matrix := THREE_m;
+						when 4 => matrix := FOUR_m;
+						when 5 => matrix := FIVE_m;
+						when 6 => matrix := SIX_m;
+						when 7 => matrix := SEVEN_m;
+						when 8 => matrix := EIGHT_m;
 						when others => null;
 					end case;
 					col <= matrix(index);
@@ -46,7 +46,7 @@ begin
 						index := 0;
 					end if;	
 				else  -- keep row and matrix's index in sync, but do not show number as clk_2hz is low.
-					row ror 1;
+					row <= row ror 1;
 					col <= "00000000";
 					index := index + 1;
 					if index = 8 then
@@ -54,17 +54,17 @@ begin
 					end if;
 				end if;
 			else  -- no need blinking.
-				row ror 1;
-				case sapces is
-					when 0 => matrix := _ZERO;
-					when 1 => matrix := _ONE;
-					when 2 => matrix := _TWO;
-					when 3 => matrix := _THREE;
-					when 4 => matrix := _FOUR;
-					when 5 => matrix := _FIVE;
-					when 6 => matrix := _SIX;
-					when 7 => matrix := _SEVEN;
-					when 8 => matrix := _EIGHT;
+				row <= row ror 1;
+				case spaces is
+					when 0 => matrix := ZERO_m;
+					when 1 => matrix := ONE_m;
+					when 2 => matrix := TWO_m;
+					when 3 => matrix := THREE_m;
+					when 4 => matrix := FOUR_m;
+					when 5 => matrix := FIVE_m;
+					when 6 => matrix := SIX_m;
+					when 7 => matrix := SEVEN_m;
+					when 8 => matrix := EIGHT_m;
 					when others => null;
 				end case;
 				col <= matrix(index);
