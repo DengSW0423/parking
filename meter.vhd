@@ -19,7 +19,12 @@ begin
 		amount_t := 0;
 		while time_t >= 24 loop
 			time_t := time_t - 24;
-			amount_t := amount_t + 40;
+			if amount_t + 40 > 99 then
+				amount_t := 99;
+				exit;
+			else
+				amount_t := amount_t + 40;
+			end if;
 		end loop;
 		
 		amount_t := amount_t + time_t * 2;

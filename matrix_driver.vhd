@@ -6,7 +6,7 @@ entity matrix_driver is
 	port(
 		rst: in std_logic;
 		clk_2hz:in std_logic;
-		clk_100hz: in std_logic;
+		clk_1000hz: in std_logic;
 		blinking: in boolean;
 		spaces: in integer range 0 to 8;
 		row: out bit_vector(7 downto 0);
@@ -15,33 +15,19 @@ entity matrix_driver is
 end matrix_driver;
 
 architecture arch of matrix_driver is
+	signal reset_out: std_logic;
+	signal clk_100hz: std_logic;
 begin
-	process(clk_100hz)
+	u1: debouncer port map(clk_100hz, rst, reset_out);
+	u2: divider_10 port map(clk_1000hz, clk_100hz);
+	
+	process(clk_1000hz)
 		variable index: integer range 0 to 7;
 		variable matrix: number_matrix;
-		variable count_reset: integer range 0 to 5;
-		variable reset_out: std_logic;
 		variable scan_row: bit_vector(7 downto 0);
 	begin
-		if rising_edge(clk_100hz) then
-			if rst = '1' then
-				if count_reset = 5 then
-					count_reset := count_reset;
-				else
-					count_reset := count_reset + 1;
-				end if;
-				
-				if count_reset = 4 then
-					reset_out := '1';
-				else
-					reset_out := '0';
-				end if;
-			else
-				count_reset := 0;
-			end if;	 --debounce
-			
+		if rising_edge(clk_1000hz) then
 			if reset_out = '1' then
-				count_reset := 0;
 				index := 0;
 				scan_row := "01111111";
 			end if; --reset

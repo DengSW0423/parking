@@ -1,16 +1,16 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use work.my_package.all;
 
 entity time_counter is
 	port(
 		clk_1hz: in std_logic;
 		led: in std_logic_vector(7 downto 0);
-		tim: out integer range 0 to 100
+		times_out: out time_array
 	);
 end time_counter;
 
 architecture arch of time_counter is
-	type time_array is array(0 to 7) of integer range 0 to 100;
 	signal times: time_array;
 begin
 	process(clk_1hz)
@@ -28,8 +28,7 @@ begin
 	begin
 		for i in 0 to 7 loop
 			if rising_edge(led(i)) then
-				tim <= times(i);
-				exit;
+				times_out(i) <= times(i);
 			end if;
 		end loop;
 	end process;

@@ -111,6 +111,7 @@ set_location_assignment PIN_144 -to unused_led[3]
 set_location_assignment PIN_74 -to unused_led[2]
 set_location_assignment PIN_76 -to unused_led[1]
 set_location_assignment PIN_78 -to unused_led[0]
+set_global_assignment -name VHDL_FILE selector.vhd
 set_global_assignment -name VHDL_FILE meter.vhd
 set_global_assignment -name VHDL_FILE time_counter.vhd
 set_global_assignment -name VHDL_FILE matrix_driver.vhd
@@ -126,4 +127,5 @@ set_global_assignment -name VHDL_FILE parking_space_reminder.vhd
 set_global_assignment -name VHDL_FILE checkout_control.vhd
 set_global_assignment -name VHDL_FILE debouncer.vhd
 set_global_assignment -name VHDL_FILE disp_driver.vhd
-set_global_assignment -name VHDL_FILE initializer.vhd
+set_global_assignment -name VHDL_FILE time_source.vhd
+set_global_assignment -name VHDL_FILE divider_10.vhd

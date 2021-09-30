@@ -5,6 +5,8 @@ package my_package is
 
 -- 1.type
 	type number_matrix is array (0 to 7) of std_logic_vector(7 downto 0);
+	type time_array is array(0 to 7) of integer range 0 to 100;
+	type integer_array is array(0 to 2) of integer range 0 to 99;
 
 -- 2.constant
 	--segment led
@@ -143,6 +145,13 @@ package my_package is
 		);
 	end component;
 	
+	component divider_10 is
+		port(
+			clk_origin: in std_logic;
+			clk_out: out std_logic
+		);
+	end component;
+	
 	component parking_space_counter is
 		port(
 			parking_spaces: in std_logic_vector(7 downto 0);
@@ -154,7 +163,7 @@ package my_package is
 		port(
 			rst: in std_logic;
 			clk_2hz:in std_logic;
-			clk_100hz: in std_logic;
+			clk_1000hz: in std_logic;
 			blinking: in boolean;
 			spaces: in integer range 0 to 8;
 			row: buffer bit_vector(7 downto 0);
@@ -166,7 +175,7 @@ package my_package is
 		port(
 			clk_1hz: in std_logic;
 			led: in std_logic_vector(7 downto 0);
-			tim: out integer range 0 to 100
+			times_out: out time_array
 		);
 	end component;
 	
@@ -197,9 +206,33 @@ package my_package is
 	component disp_driver is
 		port(
 			clk_100hz: in std_logic;
-			number: in integer range 0 to 99;
+			clk_2hz: in std_logic;
+			blinking: in boolean;
+			numbers: in integer_array;
 			disp: out std_logic_vector(6 downto 0);
-			disp_switch: buffer std_logic_vector(1 downto 0)
+			disp_switch: buffer bit_vector(5 downto 0)
+		);
+	end component;
+	
+	component meter is
+		port(
+			tim: in integer range 0 to 99; --time
+			amount: out integer range 0 to 99
+		);
+	end component;
+	
+	component selector is
+		port (
+			led: in std_logic_vector(7 downto 0);
+			index: out integer range 0 to 7
+		);
+	end component;
+	
+	component time_source is
+		port(
+			index: in integer range 0 to 7;
+			times: in time_array;
+			time_out: out integer range 0 to 99
 		);
 	end component;
 	
