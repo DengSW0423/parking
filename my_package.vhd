@@ -124,10 +124,9 @@ package my_package is
 -- 3.components
 	component cyclic_counter is
 		port(
-			clk_100hz: in std_logic;
-			disp: out std_logic_vector(6 downto 0);
-			disp_switch: buffer std_logic_vector(1 downto 0);
-			full: out std_logic --full circle output 1
+			rst: in std_logic;
+			clk_1hz: in std_logic;
+			number: out integer range 0 to 23
 		);
 	end component;
 	
@@ -175,7 +174,7 @@ package my_package is
 		port(
 			clk_1hz: in std_logic;
 			led: in std_logic_vector(7 downto 0);
-			times_out: out time_array
+			times: out time_array
 		);
 	end component;
 	

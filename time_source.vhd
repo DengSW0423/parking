@@ -4,7 +4,8 @@ use work.my_package.all;
 
 entity time_source is
 	port(
-		index: in integer range 0 to 7;
+		check_out: in boolean;
+		indexs: in index_array;
 		times: in time_array;
 		time_out: out integer range 0 to 99
 	);
@@ -12,5 +13,9 @@ end time_source;
 
 architecture arch of time_source is
 begin
-	time_out <= times(index);
+	process(check_out)
+	begin
+		
+	
+	end process;
 end arch;
