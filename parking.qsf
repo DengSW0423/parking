@@ -50,7 +50,6 @@ set_global_assignment -name MISC_FILE "C:/Users/dsw/Documents/2021fall/parking/p
 set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
 set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
-set_location_assignment PIN_18 -to clk_100hz
 set_location_assignment PIN_62 -to disp[6]
 set_location_assignment PIN_59 -to disp[5]
 set_location_assignment PIN_58 -to disp[4]
@@ -58,18 +57,13 @@ set_location_assignment PIN_57 -to disp[3]
 set_location_assignment PIN_55 -to disp[2]
 set_location_assignment PIN_53 -to disp[1]
 set_location_assignment PIN_52 -to disp[0]
-set_location_assignment PIN_31 -to disp_switch[1]
-set_location_assignment PIN_30 -to disp_switch[0]
-set_location_assignment PIN_80 -to full
+set_location_assignment PIN_66 -to disp_switch[1]
+set_location_assignment PIN_63 -to disp_switch[0]
 set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
 set_global_assignment -name USE_CONFIGURATION_DEVICE ON
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
-set_location_assignment PIN_70 -to unused_disp[5]
-set_location_assignment PIN_69 -to unused_disp[4]
-set_location_assignment PIN_68 -to unused_disp[3]
-set_location_assignment PIN_67 -to unused_disp[2]
-set_location_assignment PIN_66 -to unused_disp[1]
-set_location_assignment PIN_63 -to unused_disp[0]
+set_location_assignment PIN_70 -to unused_disp[1]
+set_location_assignment PIN_67 -to unused_disp[0]
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
 set_location_assignment PIN_1 -to row[7]
 set_location_assignment PIN_2 -to row[6]
@@ -104,13 +98,13 @@ set_location_assignment PIN_131 -to switches[3]
 set_location_assignment PIN_132 -to switches[2]
 set_location_assignment PIN_133 -to switches[1]
 set_location_assignment PIN_134 -to switches[0]
-set_location_assignment PIN_138 -to unused_led[6]
-set_location_assignment PIN_140 -to unused_led[5]
-set_location_assignment PIN_142 -to unused_led[4]
-set_location_assignment PIN_144 -to unused_led[3]
-set_location_assignment PIN_74 -to unused_led[2]
-set_location_assignment PIN_76 -to unused_led[1]
-set_location_assignment PIN_78 -to unused_led[0]
+set_location_assignment PIN_140 -to unused_led[6]
+set_location_assignment PIN_142 -to unused_led[5]
+set_location_assignment PIN_144 -to unused_led[4]
+set_location_assignment PIN_74 -to unused_led[3]
+set_location_assignment PIN_76 -to unused_led[2]
+set_location_assignment PIN_78 -to unused_led[1]
+set_location_assignment PIN_80 -to unused_led[0]
 set_global_assignment -name VHDL_FILE selector.vhd
 set_global_assignment -name VHDL_FILE meter.vhd
 set_global_assignment -name VHDL_FILE time_counter.vhd
@@ -129,3 +123,20 @@ set_global_assignment -name VHDL_FILE debouncer.vhd
 set_global_assignment -name VHDL_FILE disp_driver.vhd
 set_global_assignment -name VHDL_FILE time_source.vhd
 set_global_assignment -name VHDL_FILE divider_10.vhd
+set_location_assignment PIN_18 -to clk_1000hz
+set_location_assignment PIN_31 -to disp_switch[5]
+set_location_assignment PIN_30 -to disp_switch[4]
+set_location_assignment PIN_69 -to disp_switch[3]
+set_location_assignment PIN_68 -to disp_switch[2]
+set_location_assignment PIN_138 -to unused_led[7]
+set_location_assignment PIN_51 -to dot
+set_location_assignment PIN_45 -to green_col[7]
+set_location_assignment PIN_44 -to green_col[6]
+set_location_assignment PIN_43 -to green_col[5]
+set_location_assignment PIN_42 -to green_col[4]
+set_location_assignment PIN_41 -to green_col[3]
+set_location_assignment PIN_40 -to green_col[2]
+set_location_assignment PIN_39 -to green_col[1]
+set_location_assignment PIN_38 -to green_col[0]
+set_location_assignment PIN_60 -to beep
+set_location_assignment PIN_61 -to check_out

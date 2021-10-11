@@ -14,12 +14,12 @@ begin
 	process(parking_spaces)
 		variable cur_spaces: integer range 0 to 8;
 	begin
+		cur_spaces := 0;
 		for i in 0 to 7 loop
 			if parking_spaces(i) = '1' then
 				cur_spaces := cur_spaces + 1;
 			end if;
 		end loop;
-		
 		spaces <= cur_spaces;
 	end process;
 end arch;

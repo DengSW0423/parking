@@ -7,6 +7,7 @@ package my_package is
 	type number_matrix is array (0 to 7) of std_logic_vector(7 downto 0);
 	type time_array is array(0 to 7) of integer range 0 to 100;
 	type integer_array is array(0 to 2) of integer range 0 to 99;
+	type boolean_array is array(0 to 7) of boolean;
 
 -- 2.constant
 	--segment led
@@ -188,9 +189,11 @@ package my_package is
 	component checkout_control is
 		port(
 			clk_100hz: in std_logic;
-			checkout: in std_logic; -- debounced btn0
+			check_out: in std_logic; --btn0
 			beep: out std_logic;
-			checked_out: out boolean
+			to_check_out: in boolean_array;
+			to_disp: out boolean_array; 
+			checked_out: buffer boolean
 		);
 	end component;
 	
@@ -204,7 +207,7 @@ package my_package is
 	
 	component disp_driver is
 		port(
-			clk_100hz: in std_logic;
+			clk_1000hz: in std_logic;
 			clk_2hz: in std_logic;
 			blinking: in boolean;
 			numbers: in integer_array;
@@ -223,13 +226,13 @@ package my_package is
 	component selector is
 		port (
 			led: in std_logic_vector(7 downto 0);
-			index: out integer range 0 to 7
+			to_check_out: out boolean_array
 		);
 	end component;
 	
 	component time_source is
 		port(
-			index: in integer range 0 to 7;
+			to_disp: in boolean_array;
 			times: in time_array;
 			time_out: out integer range 0 to 99
 		);
