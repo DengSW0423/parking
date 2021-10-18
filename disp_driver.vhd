@@ -18,10 +18,11 @@ architecture arch of disp_driver is
 	signal disp_left_1, disp_right_1: std_logic_vector(6 downto 0);
 	signal disp_left_2, disp_right_2: std_logic_vector(6 downto 0);
 begin
+
 	process(clk_1000hz)
 		variable disp_state: bit_vector(5 downto 0);
 	begin
-		if rising_edge(clk_1000hz) then
+		if rising_edge(clk_1000hz) then			
 			if blinking and clk_2hz = '1' then
 				disp_switch <= "111111";
 			else

@@ -26,21 +26,23 @@ architecture arch of parking is
 	signal clk_2hz: std_logic;
 	signal clk_50hz: std_logic;
 	signal clk_100hz: std_logic;
-	signal checked_out: boolean;
 	signal blinking: boolean;
+	signal checked_out: boolean;
 	signal spaces: integer range 0 to 8;
 	signal times: time_array;
 	signal to_disp: boolean_array;
 	signal to_check_out: boolean_array;
 	signal numbers: integer_array;
+	signal check_out_debounced: std_logic;
+	signal stop_blinking: boolean;
 begin
 	unused_disp <= "11";
 	unused_led <= "00000000";
 	dot <= '0';
 	green_col <= "00000000";
-	blinking <= false;
 	
 	u1: cyclic_counter port map(rst, clk_1hz, numbers(0));
+	u15: debouncer port map(clk_100hz, check_out, check_out_debounced);
 	
 	u2: divider_50 port map(clk_100hz, clk_2hz);
 	u3: divider_2 port map(clk_2hz, clk_1hz);
@@ -54,10 +56,10 @@ begin
 	
 	u8: disp_driver port map(clk_1000hz, clk_2hz, blinking, numbers, disp, disp_switch);
 	
+	u9: checkout_control port map(clk_100hz ,clk_1hz, check_out_debounced, beep, blinking, checked_out);
 	u10: time_counter port map(clk_1hz, led, times);
 	u11: meter port map(numbers(1), numbers(2)); --amount
-	u12: selector port map(led, to_check_out);
-	u15: checkout_control port map(clk_100hz, check_out, beep, to_check_out, to_disp, checked_out);
-	u13: time_source port map(to_disp, times, numbers(1)); --time
+	u12: selector port map(check_out_debounced, led, to_check_out);
+	u13: time_source port map(to_check_out, times, numbers(1)); --time
 	
 end arch;

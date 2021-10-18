@@ -189,10 +189,10 @@ package my_package is
 	component checkout_control is
 		port(
 			clk_100hz: in std_logic;
+			clk_1hz: in std_logic;
 			check_out: in std_logic; --btn0
 			beep: out std_logic;
-			to_check_out: in boolean_array;
-			to_disp: out boolean_array; 
+			blinking: out boolean;
 			checked_out: buffer boolean
 		);
 	end component;
@@ -225,6 +225,7 @@ package my_package is
 	
 	component selector is
 		port (
+			check_out: in std_logic;
 			led: in std_logic_vector(7 downto 0);
 			to_check_out: out boolean_array
 		);
@@ -232,9 +233,17 @@ package my_package is
 	
 	component time_source is
 		port(
-			to_disp: in boolean_array;
+			to_check_out: in boolean_array;
 			times: in time_array;
-			time_out: out integer range 0 to 99
+			time_out: out integer range 0 to 100
+		);
+	end component;
+	
+	component stop_blinkinger is
+		port(
+			clk_1hz: in std_logic;
+			blinking: in boolean;
+			stop_blinking: out boolean
 		);
 	end component;
 	
