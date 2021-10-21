@@ -123,7 +123,6 @@ set_location_assignment PIN_38 -to green_col[0]
 set_location_assignment PIN_60 -to beep
 set_location_assignment PIN_61 -to check_out
 set_global_assignment -name VHDL_FILE checkout_control.vhd
-set_global_assignment -name VHDL_FILE selector.vhd
 set_global_assignment -name VHDL_FILE meter.vhd
 set_global_assignment -name VHDL_FILE time_counter.vhd
 set_global_assignment -name VHDL_FILE matrix_driver.vhd

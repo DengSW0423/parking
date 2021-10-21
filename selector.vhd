@@ -4,7 +4,6 @@ use work.my_package.all;
 
 entity selector is
 	port (
-		check_out: in std_logic;
 		led: in std_logic_vector(7 downto 0);
 		to_check_out: out boolean_array
 	);
@@ -13,7 +12,7 @@ end selector;
 architecture arch of selector is
 begin
 	
-	process(led, check_out)
+	process(led)
 		variable to_check_out_t: boolean_array;
 		variable to_check_out_t1: boolean_array;
 	begin

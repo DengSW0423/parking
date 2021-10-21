@@ -173,14 +173,17 @@ package my_package is
 	
 	component time_counter is
 		port(
+			rst: in std_logic;
+			check_out: in std_logic;
 			clk_1hz: in std_logic;
-			led: in std_logic_vector(7 downto 0);
-			times: out time_array
+			switches: in std_logic_vector(7 downto 0);
+			times: buffer time_array
 		);
 	end component;
 	
 	component parking_space_reminder is
 		port(
+			rst: in std_logic;
 			switches: in std_logic_vector(7 downto 0);	
 			led: out std_logic_vector(7 downto 0)
 		);
@@ -199,7 +202,7 @@ package my_package is
 	
 	component debouncer is
 		port(
-			clk_100hz: in std_logic;
+			clk_1000hz: in std_logic;
 			btn_in: in std_logic;
 			btn_out: out std_logic
 		);
@@ -207,6 +210,7 @@ package my_package is
 	
 	component disp_driver is
 		port(
+			rst: in std_logic;
 			clk_1000hz: in std_logic;
 			clk_2hz: in std_logic;
 			blinking: in boolean;
@@ -223,27 +227,10 @@ package my_package is
 		);
 	end component;
 	
-	component selector is
-		port (
-			check_out: in std_logic;
-			led: in std_logic_vector(7 downto 0);
-			to_check_out: out boolean_array
-		);
-	end component;
-	
 	component time_source is
 		port(
-			to_check_out: in boolean_array;
 			times: in time_array;
 			time_out: out integer range 0 to 100
-		);
-	end component;
-	
-	component stop_blinkinger is
-		port(
-			clk_1hz: in std_logic;
-			blinking: in boolean;
-			stop_blinking: out boolean
 		);
 	end component;
 	
