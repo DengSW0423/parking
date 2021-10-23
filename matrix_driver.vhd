@@ -34,30 +34,35 @@ begin
 		end case;
 	end process;
 	
-	process(clk_1000hz, rst)
+	process(clk_1000hz)
 		variable index: integer range 0 to 7;
 		variable scan_row: bit_vector(7 downto 0) := "11111111";
 	begin
-		if rst= '1' then
-			if scan_row = "11111111" then
-				scan_row := "01111111";
-			else
-				scan_row := "11111111";
-			end if;
-		elsif rising_edge(clk_1000hz) then
-			if blinking and clk_2hz = '1' then
-				row <= "11111111";
-				col <= "00000000";
-			else
+
+		if rising_edge(clk_1000hz) then
+			if rst= '1' then
+				if scan_row = "11111111" then
+					index := 0;
+					scan_row := "01111111";
+				else
+					scan_row := "11111111";
+				end if;
 				row <= scan_row;
-				col <= matrix(index);
-			end if;
-			
-			scan_row := scan_row ror 1;
-			if index = 7 then
-				index := 0;
 			else
-				index := index + 1;
+				if blinking and clk_2hz = '1' then
+					row <= "11111111";
+					col <= "00000000";
+				else
+					row <= scan_row;
+					col <= matrix(index);
+				end if;
+				
+				scan_row := scan_row ror 1;
+				if index = 7 then
+					index := 0;
+				else
+					index := index + 1;
+				end if;
 			end if;
 		end if;
 	end process;

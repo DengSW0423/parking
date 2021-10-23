@@ -183,6 +183,7 @@ package my_package is
 	
 	component parking_space_reminder is
 		port(
+			clk_1000hz: in std_logic;
 			rst: in std_logic;
 			switches: in std_logic_vector(7 downto 0);	
 			led: out std_logic_vector(7 downto 0)
@@ -191,7 +192,7 @@ package my_package is
 	
 	component checkout_control is
 		port(
-			clk_100hz: in std_logic;
+			clk_1000hz: in std_logic;
 			clk_1hz: in std_logic;
 			check_out: in std_logic; --btn0
 			beep: out std_logic;

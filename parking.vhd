@@ -51,14 +51,14 @@ begin
 	u4: divider_2 port map(clk_100hz, clk_50hz);
 	u14: divider_10 port map(clk_1000hz, clk_100hz);
 	
-	u5: parking_space_counter port map(led, spaces);
+	u5: parking_space_counter port map(switches, spaces);
 	u6: matrix_driver port map(rst_debounced, clk_2hz, clk_1000hz, blinking, spaces, row, col);
 	
-	u7: parking_space_reminder port map(rst_debounced, switches, led);
+	u7: parking_space_reminder port map(clk_1000hz, rst_debounced, switches, led);
 	
 	u8: disp_driver port map(rst_debounced, clk_1000hz, clk_2hz, blinking, numbers, disp, disp_switch);
 	
-	u9: checkout_control port map(clk_100hz ,clk_1hz, check_out_debounced, beep, blinking, checked_out);
+	u9: checkout_control port map(clk_1000hz ,clk_1hz, check_out_debounced, beep, blinking, checked_out);
 	u10: time_counter port map(rst_debounced, check_out_debounced, clk_1hz, switches, times);
 	u11: meter port map(numbers(1), numbers(2)); --amount
 	u13: time_source port map(times, numbers(1)); --time

@@ -12,18 +12,18 @@ end debouncer;
 architecture arch of debouncer is
 begin
 	process(clk_1000hz)
-		variable count: integer range 0 to 50;
+		variable count: integer range 0 to 25;
 		variable btn_out_t: std_logic;
 	begin
 		if rising_edge(clk_1000hz) then
 			if btn_in = '1' then
-				if count = 50 then
+				if count = 25 then
 					count := count;
 				else
 					count := count + 1;
 				end if;
 				
-				if count = 49 then
+				if count = 24 then
 					btn_out_t := '1';
 				else
 					btn_out_t := '0';

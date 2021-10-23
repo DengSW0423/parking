@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 
 entity parking_space_counter is
 	port(
-		parking_spaces: in std_logic_vector(7 downto 0); --led
+		parking_spaces: in std_logic_vector(7 downto 0); --switches
 		spaces: buffer integer range 0 to 8
 	);
 end parking_space_counter;
@@ -16,7 +16,7 @@ begin
 	begin
 		cur_spaces := 0;
 		for i in 0 to 7 loop
-			if parking_spaces(i) = '1' then
+			if parking_spaces(i) = '0' then
 				cur_spaces := cur_spaces + 1;
 			end if;
 		end loop;

@@ -20,30 +20,34 @@ architecture arch of disp_driver is
 	signal disp_left_2, disp_right_2: std_logic_vector(6 downto 0);
 begin
 
-	process(clk_1000hz, rst)
+	process(clk_1000hz)
 		variable disp_state: bit_vector(5 downto 0) := "111111";
 	begin
-		if rst = '1' then
-			if disp_state = "111111" then
-				disp_state := "011111";
-			else
-				disp_state := "111111";
-			end if;
-		elsif rising_edge(clk_1000hz) then
-			if blinking and clk_2hz = '1' then
-				disp_switch <= "111111";
-			else
+
+		if rising_edge(clk_1000hz) then
+			if rst = '1' then
+				if disp_state = "111111" then
+					disp_state := "011111";
+				else
+					disp_state := "111111";
+				end if;
 				disp_switch <= disp_state;
-				case disp_state is
-					when "011111" => disp <= disp_left_0;
-					when "101111" => disp <= disp_right_0;
-					when "110111" => disp <= disp_left_1;
-					when "111011" => disp <= disp_right_1;
-					when "111101" => disp <= disp_left_2;
-					when "111110" => disp <= disp_right_2;
-					when others => null;
-				end case;
-				disp_state := disp_state ror 1;
+			else
+				if blinking and clk_2hz = '1' then
+					disp_switch <= "111111";
+				else
+					disp_switch <= disp_state;
+					case disp_state is
+						when "011111" => disp <= disp_left_0;
+						when "101111" => disp <= disp_right_0;
+						when "110111" => disp <= disp_left_1;
+						when "111011" => disp <= disp_right_1;
+						when "111101" => disp <= disp_left_2;
+						when "111110" => disp <= disp_right_2;
+						when others => null;
+					end case;
+					disp_state := disp_state ror 1;
+				end if;
 			end if;
 		end if;
 	end process;
