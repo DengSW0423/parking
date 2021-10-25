@@ -14,7 +14,7 @@ end time_counter;
 
 architecture arch of time_counter is
 begin
-	process(clk_1hz, check_out)
+	process(clk_1hz, check_out, rst)
 	begin
 		if check_out = '1' or rst = '1' then
 			times <= (0, 0, 0, 0, 0, 0, 0, 0);

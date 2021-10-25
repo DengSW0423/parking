@@ -139,3 +139,5 @@ set_global_assignment -name VHDL_FILE debouncer.vhd
 set_global_assignment -name VHDL_FILE disp_driver.vhd
 set_global_assignment -name VHDL_FILE time_source.vhd
 set_global_assignment -name VHDL_FILE divider_10.vhd
+set_global_assignment -name MAXII_OPTIMIZATION_TECHNIQUE SPEED
+set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS OFF

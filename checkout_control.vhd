@@ -8,32 +8,12 @@ entity checkout_control is
 		clk_1hz: in std_logic;
 		check_out: in std_logic; --btn0
 		beep: out std_logic;
-		blinking: out boolean;
-		checked_out: buffer boolean
+		disp_blinking: out boolean
 	);
 end checkout_control;
 
 architecture arch of checkout_control is
-begin	
-	process(check_out, clk_1hz)
-		variable count: integer range 0 to 1;
-	begin
-		if check_out = '1' then
-			count := 0;
-			blinking <= true;
-		end if;
-		
-		if clk_1hz = '1' then
-			if count = 1 then
-				count := 1;
-				blinking <= false;
-			else
-				count := count + 1;
-			end if;
-		end if;
-		
-	end process;
-	
+begin
 	process(clk_1000hz)
 		variable count: integer range 0 to 1000 := 0;
 	begin
@@ -48,8 +28,10 @@ begin
 				else
 					count := count + 1;
 				end if;
+				disp_blinking <= true; --not working
 				beep <= clk_1000hz;
 			else
+				disp_blinking <= false;
 				beep <= '0';
 			end if;
 		end if;

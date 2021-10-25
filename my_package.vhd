@@ -154,6 +154,7 @@ package my_package is
 	
 	component parking_space_counter is
 		port(
+			led_blinking: in boolean;
 			parking_spaces: in std_logic_vector(7 downto 0);
 			spaces: out integer range 0 to 8
 		);
@@ -184,8 +185,11 @@ package my_package is
 	component parking_space_reminder is
 		port(
 			clk_1000hz: in std_logic;
+			clk_2hz: in std_logic;
 			rst: in std_logic;
-			switches: in std_logic_vector(7 downto 0);	
+			switches: in std_logic_vector(7 downto 0);
+			led_blinking: in boolean;
+			led_index: in integer range 0 to 7;
 			led: out std_logic_vector(7 downto 0)
 		);
 	end component;
@@ -196,8 +200,7 @@ package my_package is
 			clk_1hz: in std_logic;
 			check_out: in std_logic; --btn0
 			beep: out std_logic;
-			blinking: out boolean;
-			checked_out: buffer boolean
+			disp_blinking: out boolean
 		);
 	end component;
 	
@@ -231,6 +234,12 @@ package my_package is
 	component time_source is
 		port(
 			times: in time_array;
+			rst: in std_logic; --btn7
+			check_out: in std_logic; --btn0
+			switches: in std_logic_vector(7 downto 0);
+			matrix_blinking: out boolean;
+			led_blinking: out boolean;
+			led_index: out integer range 0 to 7;
 			time_out: out integer range 0 to 100
 		);
 	end component;
