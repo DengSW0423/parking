@@ -61,7 +61,7 @@ begin
 	u8: disp_driver port map(rst_debounced, clk_1000hz, clk_2hz, disp_blinking, numbers, disp, disp_switch);
 	
 	u9: checkout_control port map(clk_1000hz ,clk_1hz, check_out_debounced, beep, disp_blinking);
-	u10: time_counter port map(rst_debounced, check_out_debounced, clk_1hz, switches, times);
+	u10: time_counter port map(rst_debounced, check_out_debounced, clk_1hz, switches, led_index, times);
 	u11: meter port map(numbers(1), numbers(2)); --amount
 	u13: time_source port map(times, rst_debounced, check_out_debounced, switches, 
 								matrix_blinking, led_blinking, led_index, numbers(1)); --time

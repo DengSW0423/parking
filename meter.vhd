@@ -15,7 +15,11 @@ begin
 		variable amount_t: integer range 0 to 99;
 		variable time_t: integer range 0 to 99;
 	begin
-		time_t := tim;
+		if tim <= 2 then
+			time_t := 0;
+		else
+			time_t := tim - 2;
+		end if;
 		amount_t := 0;
 		while time_t >= 24 loop
 			time_t := time_t - 24;

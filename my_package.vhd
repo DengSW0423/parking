@@ -178,6 +178,7 @@ package my_package is
 			check_out: in std_logic;
 			clk_1hz: in std_logic;
 			switches: in std_logic_vector(7 downto 0);
+			led_index: in integer range 0 to 7;
 			times: buffer time_array
 		);
 	end component;

@@ -18,7 +18,7 @@ end time_source;
 architecture arch of time_source is
 begin
 
-	process(times, rst, check_out, switches)
+	process(times, switches, rst, check_out)
 	begin
 		for i in 7 downto 0 loop
 			if times(i) /= 0 then
@@ -38,6 +38,9 @@ begin
 				
 				exit;
 			end if;
+			led_index <= 0;
+			led_blinking <= false;
+			matrix_blinking <= false;
 			time_out <= 0;
 		end loop;
 	end process;
