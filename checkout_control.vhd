@@ -35,7 +35,7 @@ begin
 		end if;
 	end process;
 	
-	process(disp_blinking)
+	process(disp_blinking, clk_1000hz)
 	begin
 		if disp_blinking then
 			beep <= clk_1000hz;

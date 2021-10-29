@@ -240,7 +240,7 @@ package my_package is
 			switches: in std_logic_vector(7 downto 0);
 			matrix_blinking: out boolean;
 			led_blinking: out boolean;
-			led_index: out integer range 0 to 7;
+			led_index: buffer integer range 0 to 7;
 			time_out: out integer range 0 to 100
 		);
 	end component;

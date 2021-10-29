@@ -24,7 +24,6 @@ end parking;
 architecture arch of parking is
 	signal clk_1hz: std_logic;
 	signal clk_2hz: std_logic;
-	signal clk_50hz: std_logic;
 	signal clk_100hz: std_logic;
 	signal disp_blinking: boolean;
 	signal matrix_blinking: boolean;
@@ -50,7 +49,6 @@ begin
 	
 	u2: divider_50 port map(clk_100hz, clk_2hz);
 	u3: divider_2 port map(clk_2hz, clk_1hz);
-	u4: divider_2 port map(clk_100hz, clk_50hz);
 	u14: divider_10 port map(clk_1000hz, clk_100hz);
 	
 	u5: parking_space_counter port map(led_blinking, switches, spaces);
